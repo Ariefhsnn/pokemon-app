@@ -18,12 +18,14 @@ function Login() {
   const {
     control,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm({ resolver: yupResolver(validationSchema) });
 
   const onSubmit = (data) => {
     localStorage.setItem("email", data.email);
-    return navigate("/home");
+    setError("email", { type: "unauthorized", message: "Email Tidak Dikenal" });
+    // return navigate("/home");
   };
 
   return (
